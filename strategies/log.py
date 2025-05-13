@@ -1,7 +1,9 @@
-from strategies.base import Operation
+from strategies.base import UnaryOperation
 import math
 
 
-class LogStrategy(Operation):
+class LogStrategy(UnaryOperation):
     def execute(self, a):
-        return math.log10(a)
+        if a>0:
+            return math.log10(a)
+        raise ValueError("Błąd: liczba musi być większa od zera")
