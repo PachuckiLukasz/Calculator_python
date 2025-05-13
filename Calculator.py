@@ -1,5 +1,4 @@
-from math_core import compute
-from math_core import compute_single_argument
+from math_core import compute, compute_unary, single_arg_operations
 
 
 class Calculator:
@@ -28,14 +27,15 @@ class Calculator:
             "R": "√",
             "LOG": "log₁₀",
         }
-        if self.operator == "LOG":
+        if self.operator in single_arg_operations:
             try:
-                result = compute_single_argument(self.first_num, self.operator)
+                result = compute_unary(self.first_num, self.operator)
                 return f"log10({self.first_num:.1f}) = {result:.1f}"
             except ValueError:
-                return "Błąd - liczba musi być większa od zera"
+                return "Błąd: Nieznana operacja"
             except Exception:
                 return "Błąd: Wynik jest liczbą zespoloną"
+
         if self.operator in symbols:
             symbol = symbols[self.operator]
             if self.operator in ("R", "D", "MOD"):

@@ -9,7 +9,7 @@ operations = {
     "MOD": ModStrategy(),
     "R": RootStrategy(),
 }
-single_arg_operations ={
+single_arg_operations = {
     "LOG": LogStrategy(),
 }
 
@@ -20,9 +20,9 @@ def compute(first_num, second_num, operator):
     raise ValueError("Błąd: Nieznana operacja")
 
 
-def compute_single_argument(first_num, operator):
-    import math
-    if operator == "LOG":
-        if first_num > 0:
-            return math.log10(first_num)
-        raise ValueError("Błąd: liczba musi być większa od zera")
+def compute_unary(first_num, operator):
+    if operator in single_arg_operations:
+        return single_arg_operations[operator].execute(first_num)
+    else:
+        raise ValueError("Nieznana operacja jednoargumentowa")
+
