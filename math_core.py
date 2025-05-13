@@ -1,10 +1,13 @@
-from strategies import AddStrategy, SubStrategy, MulStrategy, PowStrategy
+from strategies import AddStrategy, SubStrategy, MulStrategy, PowStrategy, DivStrategy, ModStrategy,RootStrategy
 
 operations = {
     "A": AddStrategy(),
     "S": SubStrategy(),
     "M": MulStrategy(),
     "P": PowStrategy(),
+    "D": DivStrategy(),
+    "MOD": ModStrategy(),
+    "R": RootStrategy(),
 
 }
 
