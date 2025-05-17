@@ -29,6 +29,17 @@ class Calculator:
 
     def perform_operation(self):
         if self.operator in single_arg_operations:
+            return self.perform_unary_operation()
+        if self.operator in self.SYMBOLS:
+            return self.perform_binary_operation()
+        elif self.operator == "X":
+            self.keep_going = False
+            return "Koniec obliczeń"
+        else:
+            return "Nieznana operacja."
+
+
+    def perform_unary_operation(self):
             try:
                 result = compute_unary(self.first_num, self.operator)
                 return f"log10({self.first_num:.1f}) = {result:.1f}"
@@ -37,26 +48,22 @@ class Calculator:
             except Exception:
                 return "Błąd: Wynik jest liczbą zespoloną"
 
-        if self.operator in self.SYMBOLS:
-            symbol = self.SYMBOLS[self.operator]
-            try:
-                return self.format_result(self.first_num, self.second_num, symbol, self.operator)
-            except ZeroDivisionError:
-                if self.operator in ("D", "MOD"):
-                    return "Błąd - dzielenie przez 0"
-                elif self.operator == "R":
-                    return "Błąd - pierwiastkowanie przez 0"
-                else:
-                    return "Błąd arytmetyczny"
-            except OverflowError:
-                return "Błąd - wynik zbyt duży"
-            except Exception:
-                return "Błąd - spróbuj jeszcze raz"
-        elif self.operator == "X":
-            self.keep_going = False
-            return "Koniec obliczeń"
-        else:
-            return "Nieznana operacja."
+
+    def perform_binary_operation(self):
+        symbol = self.SYMBOLS[self.operator]
+        try:
+            return self.format_result(self.first_num, self.second_num, symbol, self.operator)
+        except ZeroDivisionError:
+            if self.operator in ("D", "MOD"):
+                return "Błąd - dzielenie przez 0"
+            elif self.operator == "R":
+                return "Błąd - pierwiastkowanie przez 0"
+            else:
+                return "Błąd arytmetyczny"
+        except OverflowError:
+            return "Błąd - wynik zbyt duży"
+        except Exception:
+            return "Błąd - spróbuj jeszcze raz"
 
     def format_result(self, a, b, symbol, operator):
         result = compute(a, b, operator)
