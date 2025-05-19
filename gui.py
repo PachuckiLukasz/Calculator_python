@@ -24,9 +24,9 @@ def parse_input(text: str):
         'pow': 'P'
     }
     for operator in operators:
-        try:
-            if operator in text:
-                print("znaleziony operator: ", operator)
+        if operator in text:
+            print("znaleziony operator: ", operator)
+            try:
                 a_str, b_str = text.split(operator)
                 print("Lewa liczba:", a_str, "\nPrawa liczba:", b_str)
                 a = float(a_str)
@@ -39,7 +39,7 @@ def parse_input(text: str):
                 result = calc.perform_operation()
                 label.config(text=f"Wynik: {result}")
                 print("Wynik:", result)
-        except Exception:
+            except Exception:
                 label.config(text= "Błąd - nieprawidłowe dane")
 
 def on_click():
