@@ -24,6 +24,10 @@ def parse_input(text: str):
         'pow': 'P'
     }
     for operator in operators:
+        if text.startswith("LOG") or text.startswith("log"):
+            calc.operator = "LOG"
+            parts = text.split('(')
+            calc.first_num = float(parts[1].removesuffix(')'))
         if operator in text:
             print("znaleziony operator: ", operator)
             try:
@@ -40,7 +44,8 @@ def parse_input(text: str):
                 label.config(text=f"Wynik: {result}")
                 print("Wynik:", result)
             except Exception:
-                label.config(text= "Błąd - nieprawidłowe dane")
+                label.config(text="Błąd - nieprawidłowe dane")
+
 
 def on_click():
     text = entry.get()
