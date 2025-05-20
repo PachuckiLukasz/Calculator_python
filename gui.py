@@ -1,6 +1,6 @@
 from tkinter import *
 from Calculator import Calculator
-from controller import CalculatorController
+from controller.CalculatorController import CalculatorController
 
 
 calc = Calculator()
