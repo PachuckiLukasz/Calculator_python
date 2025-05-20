@@ -23,11 +23,23 @@ def parse_input(text: str):
         'mod': 'MOD',
         'pow': 'P'
     }
+    if text.lower().startswith("log"):
+        calc.operator = "LOG"
+        parts = text.split('(')
+        calc.first_num = float(parts[1].removesuffix(')'))
+        result = calc.perform_operation()
+        label.config(text=f"Wynik: {result}")
+        return
+    elif text.lower().startswith("r("):
+        calc.operator = "R"
+        content = text[2:-1]
+        degree_str, number_str = content.split(',')
+        calc.first_num = float(degree_str)
+        calc.second_num = float(number_str)
+        result = calc.perform_operation()
+        label.config(text=f"Wynik: {result}")
+        return
     for operator in operators:
-        if text.startswith("LOG") or text.startswith("log"):
-            calc.operator = "LOG"
-            parts = text.split('(')
-            calc.first_num = float(parts[1].removesuffix(')'))
         if operator in text:
             print("znaleziony operator: ", operator)
             try:
