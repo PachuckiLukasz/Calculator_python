@@ -3,6 +3,7 @@ from tkinter import *
 from Calculator import Calculator
 
 calc = Calculator()
+history = []
 
 
 def parse_input(text: str):
@@ -24,18 +25,29 @@ def parse_input(text: str):
         'pow': 'P'
     }
     if text.lower().startswith("log"):
-        calc.operator = "LOG"
-        parts = text.split('(')
-        calc.first_num = float(parts[1].removesuffix(')'))
-        result = calc.perform_operation()
-        label.config(text=f"Wynik: {result}")
-        return
+        try:
+            calc.operator = "LOG"
+            parts = text.split('(')
+            calc.first_num = float(parts[1].removesuffix(')'))
+            result = calc.perform_operation()
+            label.config(text=f"Wynik: {result}")
+            return
+        except Exception:
+            label.config(text="Błąd - nieprawidłowe dane")
     elif text.lower().startswith("r("):
-        calc.operator = "R"
-        content = text[2:-1]
-        degree_str, number_str = content.split(',')
-        calc.first_num = float(degree_str)
-        calc.second_num = float(number_str)
+        try:
+            calc.operator = "R"
+            content = text[2:-1]
+            degree_str, number_str = content.split(',')
+            calc.first_num = float(degree_str)
+            calc.second_num = float(number_str)
+            result = calc.perform_operation()
+            label.config(text=f"Wynik: {result}")
+            return
+        except Exception:
+            label.config(text="Błąd - nieprawidłowe dane")
+    elif "x" == text.lower():
+        calc.operator = "X"
         result = calc.perform_operation()
         label.config(text=f"Wynik: {result}")
         return
