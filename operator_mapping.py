@@ -4,7 +4,8 @@ symbol_to_strategy = {
     '*': 'mul',
     '/': 'div',
     '%': 'mod',
-    '^': 'pow'
+    '^': 'pow',
+    'C': 'choose'
 }
 
 strategy_to_symbol = {
@@ -13,5 +14,6 @@ strategy_to_symbol = {
     'mul': 'M',
     'div': 'D',
     'mod': 'MOD',
-    'pow': 'P'
+    'pow': 'P',
+    'choose': 'C'
 }

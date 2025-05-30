@@ -1,4 +1,4 @@
-from strategies.base import Operation
+from calc.strategies.base import Operation
 
 
 class MulStrategy(Operation):

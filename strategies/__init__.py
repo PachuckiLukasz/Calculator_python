@@ -6,4 +6,5 @@ from .div import DivStrategy
 from .mod import ModStrategy
 from .root import RootStrategy
 from .log import LogStrategy
+from .choose import ChooseStrategy
 

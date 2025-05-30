@@ -1,4 +1,6 @@
-from strategies import AddStrategy, SubStrategy, MulStrategy, PowStrategy, DivStrategy, ModStrategy,RootStrategy, LogStrategy
+from strategies import AddStrategy, SubStrategy, MulStrategy, PowStrategy, DivStrategy, ModStrategy, \
+    RootStrategy, LogStrategy, ChooseStrategy
+
 
 operations = {
     "A": AddStrategy(),
@@ -8,6 +10,7 @@ operations = {
     "D": DivStrategy(),
     "MOD": ModStrategy(),
     "R": RootStrategy(),
+    "C": ChooseStrategy(),
 }
 single_arg_operations = {
     "LOG": LogStrategy(),

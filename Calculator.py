@@ -10,7 +10,8 @@ class Calculator:
         "D": "/",
         "MOD": "%",
         "R": "√",
-        "LOG": "log₁₀",
+        "LOG": "log10",
+        "C": "nCk",
     }
 
     def __init__(self):
@@ -38,16 +39,15 @@ class Calculator:
         else:
             return "Nieznana operacja."
 
-
     def perform_unary_operation(self):
-            try:
-                result = compute_unary(self.first_num, self.operator)
-                return f"log10({self.first_num:.1f}) = {result:.1f}"
-            except ValueError:
-                return "Błąd: Nieznana operacja"
-            except Exception:
-                return "Błąd: Wynik jest liczbą zespoloną"
-
+        try:
+            result = compute_unary(self.first_num, self.operator)
+            symbol = self.SYMBOLS[self.operator]
+            return f"{symbol}({self.first_num:.1f}) = {result:.1f}"
+        except ValueError as e:
+            return f"Błąd - {e}"
+        except Exception:
+            return "Błąd: Wynik jest liczbą zespoloną"
 
     def perform_binary_operation(self):
         symbol = self.SYMBOLS[self.operator]
@@ -62,8 +62,8 @@ class Calculator:
                 return "Błąd arytmetyczny"
         except OverflowError:
             return "Błąd - wynik zbyt duży"
-        except Exception:
-            return "Błąd - spróbuj jeszcze raz"
+        except Exception as e:
+            return f"Błąd: {e}"
 
     def format_result(self, a, b, symbol, operator):
         result = compute(a, b, operator)
@@ -80,6 +80,6 @@ class Calculator:
 
     def input_operator(self):
         print("Operation: \nA - add \nS - subtract \nM - multiply \nD - divide\nMOD - modulo\n"
-              "P - power \nLOG - logarithm\nR - root \nX - stop")
+              "P - power \nLOG - logarithm\nR - root\nC - Choose \nX - stop")
         self.operator = input().upper()
         return self.operator

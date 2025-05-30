@@ -1,4 +1,4 @@
-from strategies.base import Operation
+from calc.strategies.base import Operation
 import math
 
 
@@ -7,5 +7,5 @@ class RootStrategy(Operation):
         if b == 0:
             raise ZeroDivisionError("Błąd: Nie możesz dzielić przez 0")
         if a < 0 and float(b).is_integer() and int(b) % 2 == 0:
-            raise Exception("Błąd: Wynik jest liczbą zespoloną")
+            raise ValueError("Wynik jest liczbą zespoloną")
         return a ** (1 / b)

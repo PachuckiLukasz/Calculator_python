@@ -1,5 +1,9 @@
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from Calculator import Calculator
-import pytest
 
 
 def test_exit_operation():
@@ -124,3 +128,12 @@ def test_div_by_zero():
     calc.operator = "D"
     result = calc.perform_operation()
     assert result == "Błąd - dzielenie przez 0"
+
+
+def test_choose():
+    calc = Calculator()
+    calc.first_num = 5
+    calc.second_num = 2
+    calc.operator = 'C'
+    result = calc.perform_operation()
+    assert result == "5.0 nCk 2.0 = 10.0"
