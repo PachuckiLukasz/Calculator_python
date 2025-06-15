@@ -1,12 +1,13 @@
 from tkinter import *
 from Calculator import Calculator
 from CalculatorController import CalculatorController
-
+from rpn_strategy_map import strategy_map
 
 calc = Calculator()
 history = []
 controller = CalculatorController(calc, history)
-
+for op in strategy_map:
+    print(f"Operator: {op}")
 
 def on_click():
     text = entry.get()

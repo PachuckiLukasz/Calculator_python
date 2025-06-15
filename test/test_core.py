@@ -32,12 +32,12 @@ def test_divide_by_zero():
 
 
 def test_root():
-    assert compute(9, 2, "R") == 3.0
+    assert compute(2, 9, "R") == 3.0
 
 
 def test_root_by_zero():
     with pytest.raises(ZeroDivisionError):
-        compute(9, 0, "R")
+        compute(0, 9, "R")
 
 
 def test_unknown_operator():
@@ -45,7 +45,11 @@ def test_unknown_operator():
         compute(2, 2, "Z")
 
 
+def test_root_from_negative_with_even_degree():
+    with pytest.raises(ValueError):
+        compute(2, -9, "R")
+
+
 def test_root_from_negative_with_odd_degree():
-    with pytest.raises(Exception) as exclusion_info:
-        compute(-9, 2, "R")
-    assert "Błąd: Wynik jest liczbą zespoloną" in str(exclusion_info)
+    result = compute(3, -8, "R")
+    assert result == pytest.approx(-2.0)

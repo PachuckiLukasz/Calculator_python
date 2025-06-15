@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from calc.strategies.choose import ChooseStrategy
+from strategies.choose import ChooseStrategy
 
 
 def test_choose_strategy_valid():

@@ -1,8 +1,10 @@
-from calc.strategies.base import Operation
+from .base import Operation
 import math
 
 
 class ChooseStrategy(Operation):
+    symbols = ["choose", "c"]
+
     def execute(self, a, b):
         a = int(a)
         b = int(b)
